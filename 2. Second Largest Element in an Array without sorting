@@ -1,0 +1,17 @@
+#User function Template for python3
+class Solution:
+
+    def print2largest(self,arr, n):
+        # code here
+        maxi = -1
+        second = -1
+        for i in range(n):
+            if arr[i]>maxi:
+                maxi = arr[i]
+        for i in range(n):
+            if arr[i]>second and maxi!=arr[i]:
+                second = arr[i]
+        
+        return second        
+                
+            
