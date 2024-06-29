@@ -1,0 +1,25 @@
+#User function Template for python3
+
+class Solution:
+    
+    #Function to return a list containing the union of the two arrays.
+    def findUnion(self,a,b,n,m):
+        '''
+        :param a: given sorted array a
+        :param n: size of sorted array a
+        :param b: given sorted array b
+        :param m: size of sorted array b
+        :return:  The union of both arrays as a list
+        '''
+        # code here 
+        res = []
+        for i in range(n-1):
+            if a[i]!=a[i+1]:
+                res.append(a[i])
+        if a[n-1] not in res:
+            res.append(a[n-1])
+        for i in range(m):
+            if b[i] not in res:
+                res.append(b[i])
+        res = sorted(res)
+        return res
