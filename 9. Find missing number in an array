@@ -1,0 +1,31 @@
+class Solution(object):
+    def missingNumber(self, a):
+        # Outer loop that runs from 1 to N:
+        N = len(a)
+        for i in range(0, N + 1):
+            # flag variable to check if an element exists
+            flag = False
+
+            # Search the element using linear search:
+            for j in range(len(a)):
+                if a[j] == i:
+                    # i is present in the array:
+                    flag = True
+                    break
+
+            # check if the element is missing (i.e., flag == 0):
+            if flag == False:
+                return i
+
+
+#optimal
+class Solution(object):
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        s = n*(n+1)//2
+        s1 = sum(nums)
+        return s-s1
