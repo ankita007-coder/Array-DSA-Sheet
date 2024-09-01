@@ -1,0 +1,14 @@
+class Solution:
+    def mostFrequentElement(self, nums):
+        d = {}
+        max_ele=-1
+        for num in nums:
+            d[num] = d.get(num,0)+1
+        maxi = -1
+        for key in d:
+            if maxi<d[key]:
+                max_ele = key
+                maxi = d[key]
+            if maxi==d[key]:
+                max_ele = min(key,max_ele)
+        return max_ele
