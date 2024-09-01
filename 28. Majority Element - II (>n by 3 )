@@ -1,0 +1,32 @@
+class Solution:
+    def majorityElementTwo(self, nums):
+        c1,c2,ele1,ele2 = 0,0,float('-inf'),float('-inf')
+        for num in nums:
+            if ele1==num:
+                c1+=1
+            elif ele2==num:
+                c2+=1
+            elif c1==0 and num!=ele1:
+                ele1=num
+                c1=1
+            elif c2==0 and num!=ele2:
+                ele2=num
+                c2=1
+            
+            else:
+                c1-=1
+                c2-=1
+        res = []
+        c1=0
+        c2 = 0
+        for num in nums:
+            if num==ele1:
+                c1+=1
+            if num==ele2:
+                c2+=1
+        n = len(nums)
+        if c1>n//3:
+            res.append(ele1)
+        if c2>n//3:
+            res.append(ele2)
+        return res
