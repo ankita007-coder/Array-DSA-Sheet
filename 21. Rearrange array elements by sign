@@ -1,0 +1,48 @@
+# Given an integer array nums of even length consisting of an equal number of positive and negative integers.Return the answer array in such a way that the given conditions are met:
+# Every consecutive pair of integers have opposite signs.
+# For all integers with the same sign, the order in which they were present in nums is preserved.
+# The rearranged array begins with a positive integer.
+
+#optimal
+class Solution:
+    def rearrangeArray(self, nums):
+        pos,neg = 0,1
+        n = len(nums)
+        arr = [0]*n
+
+        for i in range(n):
+            if nums[i]<0:
+                arr[neg]=nums[i]
+                neg+=2
+            else:
+                arr[pos]=nums[i]
+                pos+=2
+        return arr
+
+#brute
+class Solution:
+    # Function to rearrange the given array by signs
+    def rearrangeArray(self, nums):
+        n = len(nums)
+        
+        """ Define 2 vectors, one for storing positive 
+        and other for negative elements of the array."""
+        pos = []
+        neg = []
+  
+        # Segregate the array into positives and negatives.
+        for num in nums:
+            if num > 0:
+                pos.append(num)
+            else:
+                neg.append(num)
+  
+        # Positives on even indices, negatives on odd.
+        for i in range(n // 2):
+            nums[2 * i] = pos[i]
+            nums[2 * i + 1] = neg[i]
+        
+        # Return the result
+        return nums
+
+
