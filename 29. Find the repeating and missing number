@@ -1,0 +1,19 @@
+class Solution:
+    def findMissingRepeatingNumbers(self, nums):
+        n = len(nums)
+        s= (n * (n + 1)) // 2
+
+        ss = (n * (n + 1) * (2 * n + 1)) // 6
+        s1= 0
+        s2 = 0
+        for num in nums:
+            s1 += num
+            s2 += num * num
+
+        val1 = s-s1
+        val2 = ss-s2
+        val2 = val2 // val1
+
+        x = (val1 + val2) // 2
+        y = x - val1
+        return [int(y), int(x)]
