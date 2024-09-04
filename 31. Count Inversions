@@ -1,0 +1,43 @@
+class Solution:
+    def numberOfInversions(self, nums):
+        low,high = 0,len(nums)-1
+        count = self.mergeSort(nums,low,high)
+        return count
+
+    def mergeSort(self, nums,low,high):
+        count = 0
+        
+        if low<high:
+            mid = (low+high)//2
+            count+=self.mergeSort(nums,low,mid)
+            count+=self.mergeSort(nums,mid+1,high)
+
+            count+=self.merge(nums,low,mid,high)
+        return count
+
+
+    def merge(self,nums,start,mid,end):
+
+        temp = []
+        left = start
+        right = mid+1
+        count = 0
+        while left<=mid and right<=end:
+            if nums[left]<=nums[right]:
+                temp.append(nums[left])
+                left+=1
+            else:
+                temp.append(nums[right])
+                right+=1
+                count+=(mid-left+1)
+        
+        while left<=mid:
+            temp.append(nums[left])
+            left+=1
+        while right<=end:
+            temp.append(nums[right])
+            right+=1
+
+        for i in range(start,end+1):
+            nums[i]=temp[i-start]
+        return count
