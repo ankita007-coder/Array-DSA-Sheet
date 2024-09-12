@@ -1,0 +1,16 @@
+class Solution:
+    def maxLen(self, n, arr):
+        #Code here
+        maxi = 0
+        ss = {}
+        sum = 0
+        for i in range(n):
+            sum +=arr[i]
+            if sum==0:
+                maxi = i+1
+            else:
+                if sum in ss:
+                    maxi = max(maxi,i-ss[sum])
+                else:
+                    ss[sum]=i
+        return maxi
