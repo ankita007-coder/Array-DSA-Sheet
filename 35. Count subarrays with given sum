@@ -1,0 +1,11 @@
+class Solution:
+    def subarraySum(self, nums, k):
+        ss = {0:1}
+        count,sum = 0,0
+        for num in nums:
+            sum+=num
+            if sum-k in ss:
+                count+= ss[sum-k]
+            ss[sum] = ss.get(sum,0)+1
+        
+        return count
