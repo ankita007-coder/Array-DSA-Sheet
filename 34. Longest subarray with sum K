@@ -1,0 +1,17 @@
+class Solution:
+    def longestSubarray(self, nums, k):
+        ss = {}
+        maxi,sum = 0,0
+        for i in range(len(nums)):
+            sum+=nums[i]
+            if sum==k:
+                maxi = max(maxi,i+1)
+            
+            if sum-k in ss:
+                idx = ss[sum-k]
+                maxi = max(maxi,i-idx)
+            
+            if sum not in ss:
+                ss[sum]=i
+        return maxi
+            
