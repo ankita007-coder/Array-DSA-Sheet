@@ -1,0 +1,12 @@
+class Solution:
+    def subarraysWithXorK(self, nums, k):
+        ss = {0:1}
+        xr = 0
+        count = 0
+        for num in nums:
+            xr = xr^num
+            if xr^k in ss:
+                count+=ss[xr^k]
+            
+            ss[xr] = ss.get(xr,0)+1
+        return count
